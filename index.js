@@ -7,7 +7,10 @@ async function start(){
     await page.goto('https://learnwebcode.github.io/practice-requests/')
     // await page.screenshot({path:"amazing2.png",fullPage:true})
 
-    const names=['red','orange','yellow'];
+
+    const names=await page.evaluate(()=>{
+        return Array.from(document.querySelectorAll('.info strong')).map(x=>x.textContent)
+    })
     await fs.writeFile("names.txt",names.join("\r\n"));
     await browser.close()
 }
