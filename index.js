@@ -1,10 +1,14 @@
 const puppeteer=require('puppeteer');
+const fs=require('fs/promises');
 
 async function start(){
     const browser=await puppeteer.launch()
     const page=await browser.newPage()
-    await page.goto('https://en.wikipedia.org/wiki/Main_Page')
-    await page.screenshot({path:"amazing2.png",fullPage:true})
+    await page.goto('https://learnwebcode.github.io/practice-requests/')
+    // await page.screenshot({path:"amazing2.png",fullPage:true})
+
+    const names=['red','orange','yellow'];
+    await fs.writeFile("names.txt",names.join("\r\n"));
     await browser.close()
 }
 
