@@ -39,4 +39,4 @@ async function start(){
     await browser.close()
 }
 
-start()
+setInterval(start,5000);
